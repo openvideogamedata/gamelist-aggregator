@@ -40,7 +40,7 @@ Welcome to the **GameList Aggregator** project! This open-source initiative aggr
 
     2. IGDB
 
-        - ClientId: Your IGDB Client ID, obtained after registering an application at IGDB.
+        - ClientId: Your IGDB Client ID, obtained after registering an application at [IGDB](https://www.igdb.com/).
         - ClientSecret: The client secret associated with your IGDB account. This is used to authenticate calls to the IGDB API.
 
     3. GoogleAuth
@@ -62,7 +62,8 @@ Welcome to the **GameList Aggregator** project! This open-source initiative aggr
         "ClientSecret": "YOUR_GOOGLE_CLIENT_SECRET"
     }
     ```
-    Important: Keep your credentials private and never commit them to a public repository. Whenever possible, use environment variables or another secure method to store sensitive information.
+
+    *Important*: Keep your credentials private and never commit them to a public repository. Whenever possible, use environment variables or another secure method to store sensitive information.
     
 3. Build and run:
     ```bash
