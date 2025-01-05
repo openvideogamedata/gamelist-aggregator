@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="WhatIsObjective" xml:space="preserve">
+    <value>Qual o objetivo desse site?</value>
+  </data>
+  <data name="ObjectiveDescription" xml:space="preserve">
+    <value>O objetivo desse site é agregar dados sobre jogos em um único lugar, 
+    de forma livre e acessível. Atualmente estamos colhendo listas criadas por jornalistas e críticos
+    confiáveis de toda internet, a fim de formar uma lista final para diversas categorias.</value>
+  </data>
+  <data name="IsProfit" xml:space="preserve">
+    <value>Esse projeto é sem fins lucrativos? Como ele se mantém atualmente?</value>
+  </data>
+  <data name="ProfitDescription" xml:space="preserve">
+    <value>Esse é um projeto sem fins lucrativos, atualmente, todos os custos de manutenção (como hosting, base de dados, DNS, etc)
+    são integralmente arcados por seus criadores. Nós temos esperança que no futuro esse projeto possa se pagar sozinho com ajuda de colaboradores e da comunidade.</value>
+  </data>
+  <data name="HowData" xml:space="preserve">
+    <value>Como os dados são adicionados?</value>
+  </data>
+  <data name="DataDescription" xml:space="preserve">
+    <value>Todos os dados são adicionados pela comunidade. Qualquer usuário pode criar uma conta (só aceitamos contas do Google por enquanto) 
+    e adicionar listas de jogos de fontes confiáveis que encontrarem, ou listas de opiniões pessoais, em qualquer categoria que se encaixem.</value>
+  </data>
+  <data name="HowCompare" xml:space="preserve">
+    <value>Como esse site se compara ao Metacritic ou ao OpenCritic?</value>
+  </data>
+  <data name="CompareDescription" xml:space="preserve">
+    <value>Ao contrário do Metacritic e OpenCritic, que focam em agregar notas de diversos críticos pra chegar a uma pontuação final, 
+    nosso site faz isso com listas inteiras, agregando listas de diversos críticos em uma única lista com ajuda da comunidade.</value>
+  </data>
+  <data name="Who" xml:space="preserve">
+    <value>Quem são os criadores do Open Video Game Data?</value>
+  </data>
+  <data name="WhoDescription" xml:space="preserve">
+    <value>Os criadores do site são apenas dois devs, apaixonados por dados e jogos, que estão desenvolvendo esse projeto como um hobby.</value>
+  </data>
+  <data name="WhatRules" xml:space="preserve">
+    <value>Quais são as regras para adicionar uma lista de uma fonte da internet?</value>
+  </data>
+  <data name="RulesDescription" xml:space="preserve">
+    <value>Para uma lista ser adicionada, ela deve representar a opinião de um jornalista, ou um crítico, não de uma opinião pessoal. 
+    Além disso, a lista deve ser enumerada e ranqueada, pra que seja possível para o Open Video Game Data calcular a pontuação final de cada jogo da lista. 
+    Por fim, a lista não pode ser baseada em outra lista, ex: "lista baseada no placar do Metacritic's".</value>
+  </data>
+  <data name="HowContribute" xml:space="preserve">
+    <value>Como eu contribuo?</value>
+  </data>
+  <data name="ToAggregate" xml:space="preserve">
+    <value>Você pode contribuir de varias formas, como criando listas pessoais, trackeando sua situação em um jogo,
+    ou adicionando uma lista de uma fonte da internet, porém a última opção exige alguns passos.
+    Pra agragar uma lista de uma fonte de internet ao Open Video Game Data, siga esses passos:</value>
+  </data>
+  <data name="ToAggregateStep1" xml:space="preserve">
+    <value>Encontre uma lista que se enquadre nas regras mencionadas anteriormente</value>
+  </data>
+  <data name="ToAggregateStep2" xml:space="preserve">
+    <value>Faça login no Open Video Game Data com sua conta do Google.</value>
+  </data>
+  <data name="ToAggregateStep3" xml:space="preserve">
+    <value>Procure a categoria adequada, caso a fonte externa tenha uma lista de "melhores jogos do playstation 5", procure essa categoria no Open Video Game Data.</value>
+  </data>
+  <data name="ToAggregateStep3_2" xml:space="preserve">
+    <value>Uma vez na tela da categoria, clique em "Listas de Críticos" e no final da tela clique em "Adicionar nova lista"</value>
+  </data>
+  <data name="ToAggregateStep4" xml:space="preserve">
+    <value>Cole a URL e verifica se a lista está disponível (pois alguém pode já ter adicionado essa fonte).</value>
+  </data>
+  <data name="ToAggregateStep5" xml:space="preserve">
+    <value>Se estiver disponível, novos campos vão aparecer e agora você pode adicionar os jogos. Comece com o primeiro jogo. 
+        Para isso, você pode digitar o nome do jogo e clicar "Buscar". Você também pode colocar vírgula e o ano do lançamento do jogo, caso queira filtrar os resultados antes de buscar.</value>
+  </data>
+  <data name="ToAggregateStep6" xml:space="preserve">
+    <value>Uma lista de jogos, com seus nomes e anos de lançamento, vai aparecer. Verifique com cuidado para escolher o jogo correto, 
+        isso porquê existem jogos com o mesmo nome, mas anos de lançamento diferentes.</value>
+  </data>
+  <data name="ToAggregateStep7_1" xml:space="preserve">
+    <value>Continue adicionando os jogos em ordem, lembre-se, o número máximo de jogos por lista é 15, então se a fonte tem</value>
+  </data>
+  <data name="more" xml:space="preserve">
+    <value>mais</value>
+  </data>
+  <data name="ToAggregateStep7_2" xml:space="preserve">
+    <value>de 15,</value>
+  </data>
+  <data name="ToAggregateStep7_3" xml:space="preserve">
+    <value>adicione apenas 15 e nada menos.</value>
+  </data>
+  <data name="ToAggregateStep7_4" xml:space="preserve">
+    <value>Se a lista tem</value>
+  </data>
+  <data name="less" xml:space="preserve">
+    <value>menos</value>
+  </data>
+  <data name="ToAggregateStep7_5" xml:space="preserve">
+    <value>de 15, você deve</value>
+  </data>
+  <data name="ToAggregateStep7_6" xml:space="preserve">
+    <value>adicionar a lista inteira</value>
+  </data>
+  <data name="ToAggregateStep8" xml:space="preserve">
+    <value>Após adicionar todos os jogos em ordem basta descer ao fim da tela.</value>
+  </data>
+  <data name="ToAggregateStep9" xml:space="preserve">
+    <value>Finalmente clique em "Criar nova sugestão de lista".</value>
+  </data>
+  <data name="ToAggregateStep10" xml:space="preserve">
+    <value>Sua contribuição vai ser exibida no menu "Sugestões de listas" e outros usuários podem dar "like" ou "dislike", que servem apenas para informar aos admins se a lista faz sentido, ou se foi adicionada corretamente.</value>
+  </data>
+  <data name="ToAggregateStep11" xml:space="preserve">
+    <value>Agora basta aguardar um administrador aprovar sua submissão e a lista da sua fonte será agregada a lista final daquela categoria!</value>
+  </data>
+</root>

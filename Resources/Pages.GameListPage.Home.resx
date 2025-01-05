@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Subtitle" xml:space="preserve">
+    <value>The video game list aggregator</value>
+  </data>
+  <data name="Loading" xml:space="preserve">
+    <value>Loading</value>
+  </data>
+  <data name="Banned" xml:space="preserve">
+    <value>You have been banned and can't login</value>
+  </data>
+  <data name="TrendingTitle" xml:space="preserve">
+    <value>Trending game lists</value>
+  </data>
+  <data name="TrendingSubtitle" xml:space="preserve">
+    <value>Discover the lists that are trending in our community</value>
+  </data>
+  <data name="UserActivityTitle" xml:space="preserve">
+    <value>User Activity</value>
+  </data>
+  <data name="UserActivitySubtitle" xml:space="preserve">
+    <value>Find out which lists users are creating</value>
+  </data>
+  <data name="UserActivityDescriptionList" xml:space="preserve">
+    <value>created list</value>
+  </data>
+  <data name="UserActivityDescriptionTracker" xml:space="preserve">
+    <value>tracked</value>
+  </data>
+  <data name="UserActivityDescriptionTracker1" xml:space="preserve">
+    <value>over</value>
+  </data>
+  <data name="UserActivityDescriptionTracker2" xml:space="preserve">
+    <value>games</value>
+  </data>
+  <data name="UserActivityDescriptionTimeTracker" xml:space="preserve">
+    <value>in the last</value>
+  </data>
+  <data name="CreateYourList" xml:space="preserve">
+    <value>Create your list</value>
+  </data>
+  <data name="AllGameListsTitle" xml:space="preserve">
+    <value>All game lists</value>
+  </data>
+  <data name="AllGameListsSubtitle" xml:space="preserve">
+    <value>Discover all the lists based on your preference</value>
+  </data>
+
+  <data name="until" xml:space="preserve">
+    <value>until</value>
+  </data>
+  <data name="ago" xml:space="preserve">
+    <value>ago</value>
+  </data>
+  <data name="now" xml:space="preserve">
+    <value>now</value>
+  </data>
+  <data name="a" xml:space="preserve">
+    <value>a</value>
+  </data>
+  <data name="a_f" xml:space="preserve">
+    <value>a</value>
+  </data>
+  <data name="an" xml:space="preserve">
+    <value>an</value>
+  </data>
+  <data name="an_f" xml:space="preserve">
+    <value>an</value>
+  </data>
+  <data name="second" xml:space="preserve">
+    <value>second</value>
+  </data>
+  <data name="minute" xml:space="preserve">
+    <value>minute</value>
+  </data>
+  <data name="hour" xml:space="preserve">
+    <value>hour</value>
+  </data>
+  <data name="day" xml:space="preserve">
+    <value>day</value>
+  </data>
+  <data name="week" xml:space="preserve">
+    <value>week</value>
+  </data>
+  <data name="month" xml:space="preserve">
+    <value>month</value>
+  </data>
+  <data name="months" xml:space="preserve">
+    <value>months</value>
+  </data>
+  <data name="year" xml:space="preserve">
+    <value>year</value>
+  </data>
+</root>

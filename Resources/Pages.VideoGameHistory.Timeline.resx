@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Knowabouthistory" xml:space="preserve">
+    <value>Know everything about Video Game History</value>
+  </data>
+  <data name="VideoGameHistory" xml:space="preserve">
+    <value>Video Game History</value>
+  </data>
+  <data name="Concept" xml:space="preserve">
+    <value>The concept behind this project is to narrate the history of video games by featuring lists of the best games for each console across every generation.</value>
+  </data>
+  <data name="Gen1Title" xml:space="preserve">
+    <value>First generation (1972–1980)</value>
+  </data>
+  <data name="Gen1Description" xml:space="preserve">
+    <value>The first generation of video games marks the inception of the video game industry with simple Pong-style games, that were often built into the console itself.</value>
+  </data>
+  <data name="Gen2Title" xml:space="preserve">
+    <value>Second generation (1976–1992)</value>
+  </data>
+  <data name="Gen2Description" xml:space="preserve">
+    <value>This era saw the introduction of programmable systems, and games began to include colorful graphics and richer stories. Popular consoles included the Atari 2600.</value>
+  </data>
+  <data name="Gen3Title" xml:space="preserve">
+    <value>Third generation (1983–2003)</value>
+  </data>
+  <data name="Gen3Description" xml:space="preserve">
+    <value>The third generation presented more advanced graphics and audio, also called the 8-bit era, with consoles like the Nintendo Entertainment System (NES), marking the rise of iconic franchises.</value>
+  </data>
+  <data name="Gen4Title" xml:space="preserve">
+    <value>Fourth generation (1987–2004)</value>
+  </data>
+  <data name="Gen4Description" xml:space="preserve">
+    <value>This generation was characterized by the 16-bit revolution, with systems like the Super Nintendo (SNES) and Sega Genesis (also known as Mega Drive) leading the market.</value>
+  </data>
+  <data name="Gen5Title" xml:space="preserve">
+    <value>Fifth generation (1993–2006)</value>
+  </data>
+  <data name="Gen5Description" xml:space="preserve">
+    <value>Video games entered the 3D era with consoles like the PlayStation, Nintendo 64 and Sega Saturn, featuring complex graphics and deeper gameplay mechanics.</value>
+  </data>
+  <data name="Gen6Title" xml:space="preserve">
+    <value>Sixth generation (1998–2013)</value>
+  </data>
+  <data name="Gen6Description" xml:space="preserve">
+    <value>The introduction of DVD technology and internet connectivity, seen in consoles like the PlayStation 2, Xbox, and Nintendo GameCube, expanded the multimedia capabilities and online gaming.</value>
+  </data>
+  <data name="Gen7Title" xml:space="preserve">
+    <value>Seventh generation (2005–2017)</value>
+  </data>
+  <data name="Gen7Description" xml:space="preserve">
+    <value>This generation featured HD graphics and motion gaming, popularized by the Xbox 360, PlayStation 3 and Wii. Online ecosystems became more integral to console gaming.</value>
+  </data>
+  <data name="Gen8Title" xml:space="preserve">
+    <value>Eighth generation (2012–present)</value>
+  </data>
+  <data name="Gen8Description" xml:space="preserve">
+    <value>Featuring advanced graphical capabilities and integration with other media forms, consoles like the PlayStation 4, Xbox One and Nintendo Switch, offer expansive gaming networks and innovative game designs.</value>
+  </data>
+  <data name="Gen9Title" xml:space="preserve">
+    <value>Ninth generation (2020–present)</value>
+  </data>
+  <data name="Gen9Description" xml:space="preserve">
+    <value>The latest generation, led by the PlayStation 5 and Xbox Series X|S, focuses on ultra-high-speed SSDs, ray tracing graphics, and improved user interfaces for a seamless gaming experience.</value>
+  </data>
+</root>
