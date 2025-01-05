@@ -127,6 +127,7 @@ heroku logs --tail --app openvideogamedata
 This project is licensed under the MIT License — enjoy and feel free to contribute!
 
 ## ❤️ Thanks
+- Together, [André](https://github.com/andredarcie) and [Diego](https://github.com/diguifi) are the driving forces behind OpenVideoGameData, combining technical expertise, creativity, and a shared commitment to open-source.
 - IGDB for providing the game database API.
 - Our community for continued support and contribution.
 - Everyone who helps to keep the project running!
