@@ -33,20 +33,20 @@ Welcome to the **GameList Aggregator** project! This open-source initiative aggr
 2. Configure appsettings.json with:
     1. ConnectionStrings PostgreSQL: Provide your PostgreSQL database details here.
 
-    - Host: The database host (e.g., localhost or an IP address).
-    - Database: The name of your PostgreSQL database (e.g., OpenVideoGameDataDB).
-    - Username: Your PostgreSQL username.
-    - Password: Your PostgreSQL password.
+        - Host: The database host (e.g., localhost or an IP address).
+        - Database: The name of your PostgreSQL database (e.g., OpenVideoGameDataDB).
+        - Username: Your PostgreSQL username.
+        - Password: Your PostgreSQL password.
 
     2. IGDB
 
-    - ClientId: Your IGDB Client ID, obtained after registering an application at IGDB.
-    - ClientSecret: The client secret associated with your IGDB account. This is used to authenticate calls to the IGDB API.
+        - ClientId: Your IGDB Client ID, obtained after registering an application at IGDB.
+        - ClientSecret: The client secret associated with your IGDB account. This is used to authenticate calls to the IGDB API.
 
     3. GoogleAuth
-    - ClientId: Your Google OAuth client ID, usually from the Google Cloud Console.
-    - ClientSecret: The client secret for your Google OAuth application.
-    - These credentials enable Google sign-in for user authentication on Open Video Game Data.
+        - ClientId: Your Google OAuth client ID, usually from the Google Cloud Console.
+        - ClientSecret: The client secret for your Google OAuth application.
+        - These credentials enable Google sign-in for user authentication on Open Video Game Data.
 
     ```bash
     {
