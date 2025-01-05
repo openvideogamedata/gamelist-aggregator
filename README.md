@@ -1,6 +1,6 @@
 # Open Video Game Data
 
-Welcome to the **Open Video Game Data** project! This open-source initiative aggregates data about video games from various trusted sources, making it freely accessible and user-driven. The project is powered by ASP.NET Blazor, providing a dynamic, interactive user experience.
+Welcome to the **GameList Aggregator** project! This open-source initiative aggregates data about video games from various trusted sources, making it freely accessible and user-driven. The project is powered by ASP.NET Blazor, providing a dynamic, interactive user experience.
 
 ---
 
