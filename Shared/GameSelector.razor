@@ -174,8 +174,8 @@
 
     protected override async Task OnInitializedAsync()
     {
-        YOUR_CLIENT_ID = Configuration["IGDB:ClientId"] ?? "";
-        YOUR_APP_ACCESS_TOKEN = Configuration["IGDB:ClientSecret"] ?? "";
+        YOUR_CLIENT_ID = Environment.GetEnvironmentVariable("IGDB_CLIENTID") ?? "";
+        YOUR_APP_ACCESS_TOKEN = Environment.GetEnvironmentVariable("IGDB_CLIENTSECRET") ?? "";
 
         await LogOnApi();
     }

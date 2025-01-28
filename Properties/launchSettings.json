@@ -14,7 +14,12 @@
       "launchBrowser": true,
       "applicationUrl": "http://localhost:5123",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "PGSQL_CONNECTION": "YOURPGSQLCONNECTIONSTRING",
+        "IGDB_CLIENTID": "YOURIGDBCLIENTID",
+        "IGDB_CLIENTSECRET":"YOURIGDBCLIENTSECRET",
+        "GOOGLEAUTH_CLIENTID":"YOURGOOGLECLIENTID",
+        "GOOGLEAUTH_CLIENTSECRET":"YOURGOOGLECLIENTSECRET"
       }
     },
     "https": {
@@ -23,14 +28,24 @@
       "launchBrowser": true,
       "applicationUrl": "https://localhost:5124;http://localhost:5123",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "PGSQL_CONNECTION": "YOURPGSQLCONNECTIONSTRING",
+        "IGDB_CLIENTID": "YOURIGDBCLIENTID",
+        "IGDB_CLIENTSECRET":"YOURIGDBCLIENTSECRET",
+        "GOOGLEAUTH_CLIENTID":"YOURGOOGLECLIENTID",
+        "GOOGLEAUTH_CLIENTSECRET":"YOURGOOGLECLIENTSECRET"
       }
     },
     "IIS Express": {
       "commandName": "IISExpress",
       "launchBrowser": true,
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "PGSQL_CONNECTION": "YOURPGSQLCONNECTIONSTRING",
+        "IGDB_CLIENTID": "YOURIGDBCLIENTID",
+        "IGDB_CLIENTSECRET":"YOURIGDBCLIENTSECRET",
+        "GOOGLEAUTH_CLIENTID":"YOURGOOGLECLIENTID",
+        "GOOGLEAUTH_CLIENTSECRET":"YOURGOOGLECLIENTSECRET"
       }
     }
   }

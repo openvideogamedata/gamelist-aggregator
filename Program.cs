@@ -20,7 +20,10 @@ namespace community
 
         private static void ConfigureServices(WebApplicationBuilder builder)
         {
-            var connectionString = builder.Configuration["ConnectionStrings:PostgreSQL"]!;
+            var connectionString = Environment.GetEnvironmentVariable("PGSQL_CONNECTION");
+            var googleClientId = Environment.GetEnvironmentVariable("GOOGLEAUTH_CLIENTID");
+            var googleClientSecret = Environment.GetEnvironmentVariable("GOOGLEAUTH_CLIENTSECRET");
+
             builder.Services.AddDbContextFactory<ApplicationDbContext>(options =>
                 options.UseNpgsql(connectionString), ServiceLifetime.Transient);
 
@@ -58,8 +61,8 @@ namespace community
                 })
                 .AddGoogle(googleOptions =>
                 {
-                    googleOptions.ClientId = builder.Configuration["GoogleAuth:GoogleClientId"]!;
-                    googleOptions.ClientSecret = builder.Configuration["GoogleAuth:GoogleClientSecret"]!;
+                    googleOptions.ClientId = googleClientId ?? "";
+                    googleOptions.ClientSecret = googleClientSecret ?? "";
                     googleOptions.ClaimActions.MapJsonKey("urn:google:profile", "link");
                     googleOptions.ClaimActions.MapJsonKey("urn:google:image", "picture");
                 });
