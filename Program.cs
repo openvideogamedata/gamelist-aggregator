@@ -20,8 +20,9 @@ namespace community
 
         private static void ConfigureServices(WebApplicationBuilder builder)
         {
+            var connectionString = builder.Configuration["ConnectionStrings:PostgreSQL"]!;
             builder.Services.AddDbContextFactory<ApplicationDbContext>(options =>
-                options.UseNpgsql(builder.Configuration["ConnectionStrings:PostgreSQL"]!), ServiceLifetime.Transient);
+                options.UseNpgsql(connectionString), ServiceLifetime.Transient);
 
             builder.Services.AddCors(options =>
             {
@@ -30,6 +31,8 @@ namespace community
                     policy.WithOrigins(
                             "https://localhost:5124",
                             "https://openvideogamedata.herokuapp.com",
+                            "https://openvideogamedata.herokuapp.com",
+                            "https://openvideogamedata.onrender.com",
                             "https://www.openvideogamedata.com",
                             "https://openvideogamedata.com")
                         .WithMethods("PUT", "DELETE", "GET", "POST");

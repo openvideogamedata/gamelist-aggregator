@@ -70,7 +70,7 @@ Welcome to the **GameList Aggregator** project! This open-source initiative aggr
     dotnet build
     dotnet run
     ```
-The application will be available at http://localhost:5000.
+The application will be available at https://localhost:5124.
 
 ## 🛠️ Database Migrations
 If you plan to modify database schema, you may install the .NET EF tool globally:
