@@ -81,8 +81,8 @@ public class GameListRequestService
         if (gameListRequest.GameRequests.Count > 15)
             return new ResponseToPage(false, "Max ammount of games is 15");
 
-        if (gameListRequest.GameRequests.Count < 3)
-            return new ResponseToPage(false, "Min ammount of games is 3");
+        if (gameListRequest.GameRequests.Count < 1)
+            return new ResponseToPage(false, "The list must have at least one game.");
 
         using var context = this._factory.CreateDbContext();
         
