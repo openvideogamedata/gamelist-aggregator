@@ -56,10 +56,10 @@
 
             @if (gameUserTracker is not null &&  gameUserTracker.Status == TrackStatus.Beated) {
                 <button disabled="@loading" type="button" class="btn btn-secondary tracker-btn" @onclick="() => RemoveTrackerStatus()">
-                    <i class="oi oi-circle-check" style="color:#26b050;" aria-hidden="true"></i> Beated</button>
+                    <i class="oi oi-circle-check" style="color:#26b050;" aria-hidden="true"></i> Beaten</button>
             } else {
                 <button disabled="@loading" type="button" class="btn btn-primary tracker-btn" @onclick="() => CreateTracker(TrackStatus.Beated)">
-                    <i class="oi oi-circle-check" aria-hidden="true"></i> Beated</button>
+                    <i class="oi oi-circle-check" aria-hidden="true"></i> Beaten</button>
             }
 
             @if (gameUserTracker is not null && gameUserTracker.Status == TrackStatus.Abandoned) {
@@ -196,6 +196,7 @@ else
 
         if (this.gameUserTracker is not null) {
             this.gameUserTracker.Status = trackStatus;
+            this.gameUserTracker.StatusDate = DateTime.UtcNow;
         }
 
         await this.CreateOrUpdateTracker();

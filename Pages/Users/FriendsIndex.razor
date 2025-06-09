@@ -97,7 +97,7 @@ else
         else
         {
             isLoggedUser = true;
-            Requests = await _userService.GetFriendRequests(User.Id);
+            await ShowResults();
         }
     }
 
