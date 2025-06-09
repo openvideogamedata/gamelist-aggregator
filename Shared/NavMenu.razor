@@ -9,7 +9,7 @@
         <div class="container-fluid">
             <a style="width: 10vw;" class="navbar-brand" href=""><b>OVGD</b></a>
             <div class="nav-search-home">
-                <InputText class="form-control" @bind-Value="searchedText" @onblur="Search" @onkeydown="@PressedKey"/>
+                <InputText class="form-control" @bind-Value="searchedText" @onblur="Search" @onkeyup="@PressedKey"/>
             </div>
             <div style="width: 10vw; display: flex; justify-content: flex-end">
                 @if (!isLogged)

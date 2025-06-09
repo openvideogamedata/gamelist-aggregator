@@ -19,7 +19,7 @@ Welcome to the **GameList Aggregator** project! This open-source initiative aggr
 - **Database**: PostgreSQL
 - **Authentication**: Google OAuth
 - **External API**: [IGDB](https://www.igdb.com/)
-- **Hosting**: Heroku
+- **Hosting**: [Render](https://render.com/)
 
 ---
 
@@ -30,16 +30,16 @@ Welcome to the **GameList Aggregator** project! This open-source initiative aggr
    git clone https://github.com/YOUR_USERNAME/OpenVideoGameData.git
    cd OpenVideoGameData
 
-2. Configure appsettings.json with:
-    1. ConnectionStrings PostgreSQL: Provide your PostgreSQL database details here.
+2. Install .NET 8 SDK
 
+3. Configure `Properties\launchSettings.json` with:
+    1. ConnectionStrings PostgreSQL: Provide your PostgreSQL database details here.
         - Host: The database host (e.g., localhost or an IP address).
         - Database: The name of your PostgreSQL database (e.g., OpenVideoGameDataDB).
         - Username: Your PostgreSQL username.
         - Password: Your PostgreSQL password.
 
     2. IGDB
-
         - ClientId: Your IGDB Client ID, obtained after registering an application at [IGDB](https://www.igdb.com/).
         - ClientSecret: The client secret associated with your IGDB account. This is used to authenticate calls to the IGDB API.
 
@@ -47,21 +47,6 @@ Welcome to the **GameList Aggregator** project! This open-source initiative aggr
         - ClientId: Your Google OAuth client ID, usually from the Google Cloud Console.
         - ClientSecret: The client secret for your Google OAuth application.
         - These credentials enable Google sign-in for user authentication on Open Video Game Data.
-
-    ```bash
-    {
-    "ConnectionStrings": {
-        "PostgreSQL": "Host=localhost;Database=OpenVideoGameDataDB;Username=YOUR_USER;Password=YOUR_PASSWORD"
-    },
-    "IGDB": {
-        "ClientId": "YOUR_IGDB_CLIENT_ID",
-        "ClientSecret": "YOUR_IGDB_CLIENT_SECRET"
-    },
-    "GoogleAuth": {
-        "ClientId": "YOUR_GOOGLE_CLIENT_ID",
-        "ClientSecret": "YOUR_GOOGLE_CLIENT_SECRET"
-    }
-    ```
 
     *Important*: Keep your credentials private and never commit them to a public repository. Whenever possible, use environment variables or another secure method to store sensitive information.
     
@@ -82,18 +67,6 @@ Then create and apply migrations:
 ```bash
 dotnet ef migrations add InitialCreate
 dotnet ef database update
-```
-
-## 🌐 Deployment (Heroku + Docker)
-
-Below are commands you can use if deploying to Heroku using a Docker container:
-```bash
-heroku login
-docker ps
-heroku container:login
-heroku container:push web --app openvideogamedata
-heroku container:release web --app openvideogamedata
-heroku logs --tail --app openvideogamedata
 ```
 
 ## 📝 How It Works

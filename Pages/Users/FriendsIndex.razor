@@ -7,10 +7,10 @@
     <h1>Friends</h1>
     <ul class="nav nav-tabs mb-2">
         <li style="cursor: pointer;" class="nav-item">
-            <a class="nav-link prevent-select @(showRequests ? "active" : "")" @onclick="async () => await onClickTab(requests: true)"><i class="oi oi-plus"></i> Requests</a>
+            <a class="nav-link prevent-select @(showFriends ? "active" : "")" @onclick="async () => await onClickTab(friends: true)"><i class="oi oi-people"></i> Friends</a>
         </li>
         <li style="cursor: pointer;" class="nav-item">
-            <a class="nav-link prevent-select @(showFriends ? "active" : "")" @onclick="async () => await onClickTab(friends: true)"><i class="oi oi-people"></i> Friends</a>
+            <a class="nav-link prevent-select @(showRequests ? "active" : "")" @onclick="async () => await onClickTab(requests: true)"><i class="oi oi-plus"></i> Requests</a>
         </li>
     </ul>
 
@@ -85,8 +85,8 @@ else
     private IList<FriendConfirmed> Friends = new List<FriendConfirmed>();
     private bool showReceivedRequest = true;
     private bool isLoggedUser = false;
-    private bool showRequests = true;
-    private bool showFriends = false;
+    private bool showRequests = false;
+    private bool showFriends = true;
     private bool loading = false;
 
     protected override async Task OnInitializedAsync()
