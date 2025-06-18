@@ -1,4 +1,3 @@
-using System.Security.Claims;
 using community.Services;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;

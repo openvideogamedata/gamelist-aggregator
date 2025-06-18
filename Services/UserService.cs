@@ -598,6 +598,17 @@ public sealed class UserService
         return null;
     }
 
+    public async Task<List<GameUserTracker>?> GetFriendsCommentsOnGame(long userId, long gameId)
+    {
+        using var context = this._factory.CreateDbContext();
+        var friends = await GetFriends(userId);
+        var friendsIds = friends.Select(x => x.Friend.Id).ToList();
+        return await context.GameUserTrackers
+                    .Include(x => x.User)
+                    .Where(tracker => tracker.GameId == gameId && friendsIds.Contains(tracker.UserId))
+                    .ToListAsync();
+    }
+
     private async Task<IList<Friendship>> GetFriendships(long userId, FriendshipStatus status)
     {
         using var context = this._factory.CreateDbContext();

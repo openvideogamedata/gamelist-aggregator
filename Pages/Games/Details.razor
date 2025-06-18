@@ -16,7 +16,7 @@
     @if (avgPosition != 0)
     {
         <h3>
-            Average position: <div style="display: inline-block; font-size: 34px; color: @avgColor;"><b>@avgPosition</b></div>/15
+            <div style="display: inline-block; font-size: 34px; color: @avgColor;"><b>@avgPosition</b></div>/15
             <div class="tooltipi" style="top: -16px; font-size: 14px; margin-left: 5px;">
                 (?)<span class="tooltipitext">Average position of this game over all lists and categories it appears</span>
             </div>
@@ -73,22 +73,39 @@
     </div>
     
     <div class="row">
-        <div class="col">
-           
-        </div>
+        <div class="col"></div>
     </div>
 
     @if (gameUserTracker is not null) {
-        <p>Date: <InputDate @onblur="LostFocus" @bind-Value="gameUserTracker.StatusDate" /></p>
+        <p><InputDate @onblur="LostFocus" @bind-Value="gameUserTracker.StatusDate" /></p>
         <div>
             <div class="col-sm-6 col-12">
-                <label for="exampleFormControlTextarea1"><i class="oi oi-document" aria-hidden="true"></i> Note</label>
                 <InputTextArea maxlength="80" @bind-Value="@gameUserTracker.Note" @onblur="LostFocus" class="form-control note-text-box" id="exampleFormControlTextarea1" rows="3" disabled="@loading"></InputTextArea>
             </div>
         </div>
-        <div class="row">
+    }
+
+    @if (friendsTrackers is not null && friendsTrackers.Any()) {
+        <div class="row" style="margin-top:15px;">
             <div class="col">
-                <p>Last Update: @gameUserTracker.GetTrackStatusDate()</p>
+            @foreach(var friendTracker in friendsTrackers.OrderByDescending(x => x.Note?.Length).Take(5))
+            {
+                @if (friendTracker.User != null)
+                {
+                    <div class="tooltipi" style="font-size: 14px; margin-left: 5px;">
+                        <a class="only-show-desktop" href="/users/@friendTracker.User.Nickname/trackers">
+                            <PixelEditor canEdit="@false" size="1" matrix="@friendTracker.User.GetUserPicture()" showLoading="@false" userNickname="@friendTracker.User.FullName"/>
+                        </a>
+                        <div class="only-show-mobile">
+                            <PixelEditor canEdit="@false" size="1" matrix="@friendTracker.User.GetUserPicture()" showLoading="@false" userNickname="@friendTracker.User.FullName"/>
+                        </div>
+                        @if (!string.IsNullOrEmpty(friendTracker.Note))
+                        {
+                            <span class="tooltipitext">@friendTracker.User.Nickname: @friendTracker.Note</span>
+                        }
+                    </div>
+                }
+            }
             </div>
         </div>
     }
@@ -152,6 +169,7 @@ else
     private User? user = null;
     private List<Item> items = null;
     private Pager pager;
+    private List<GameUserTracker>? friendsTrackers;
     private bool loading = true;
     private int avgPosition = 0;
     private string avgColor = "";
@@ -165,6 +183,7 @@ else
 
         if (user is not null && game is not null) {
             this.gameUserTracker = await _trackerService.GetByGameIdAndUserIdAsync(user.Id, id);
+            this.friendsTrackers = await _userService.GetFriendsCommentsOnGame(user.Id, id);
         }
 
         if (game != null) {
