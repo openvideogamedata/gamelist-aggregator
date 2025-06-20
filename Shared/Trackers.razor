@@ -105,7 +105,7 @@
 
         if (trackers.Any())
         {
-            var beateds = trackers.FirstOrDefault(x => x.TrackStatus == TrackStatus.Beated);
+            var beateds = trackers.FirstOrDefault(x => x.TrackStatus == TrackStatus.Beaten);
             if (beateds != null)
             {
                 var totalBeated = beateds.TrackStatusCount;

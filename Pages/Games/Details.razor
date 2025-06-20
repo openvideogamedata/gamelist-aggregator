@@ -54,11 +54,11 @@
                     <i class="oi oi-check" aria-hidden="true"></i> Played</button>
             }
 
-            @if (gameUserTracker is not null &&  gameUserTracker.Status == TrackStatus.Beated) {
+            @if (gameUserTracker is not null &&  gameUserTracker.Status == TrackStatus.Beaten) {
                 <button disabled="@loading" type="button" class="btn btn-secondary tracker-btn" @onclick="() => RemoveTrackerStatus()">
                     <i class="oi oi-circle-check" style="color:#26b050;" aria-hidden="true"></i> Beaten</button>
             } else {
-                <button disabled="@loading" type="button" class="btn btn-primary tracker-btn" @onclick="() => CreateTracker(TrackStatus.Beated)">
+                <button disabled="@loading" type="button" class="btn btn-primary tracker-btn" @onclick="() => CreateTracker(TrackStatus.Beaten)">
                     <i class="oi oi-circle-check" aria-hidden="true"></i> Beaten</button>
             }
 

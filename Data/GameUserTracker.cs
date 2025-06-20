@@ -40,7 +40,7 @@ public enum TrackStatus {
     None,
     ToPlay,
     Playing,
-    Beated,
+    Beaten,
     Abandoned,
     Played,
 }

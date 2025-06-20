@@ -60,7 +60,7 @@
                             </div>
                             <div class="user-perfil-of-user-activity-name">
                                 <div><a href="@userActivity.UserProfileUrl">@userActivity.User.FullName</a> @Loc["UserActivityDescriptionTracker"]:</div>
-                                <div>@Loc["UserActivityDescriptionTracker1"] @userActivity.ItemsTracked <a href="@(userActivity.UserProfileUrl + $"?trackStatus={(int)userActivity.MostRecentTracker.Status}")">@Loc["UserActivityDescriptionTracker2"]</a> @Loc["UserActivityDescriptionTimeTracker"] @(userActivity.DateAdded.ToNaturalLanguage<Home>(false, Loc))</div>
+                                <div>@Loc["UserActivityDescriptionTracker1"] @userActivity.ItemsTracked <a href="@(userActivity.UserProfileUrl + $"/trackers?trackStatus={(int)userActivity.MostRecentTracker.Status}")">@Loc["UserActivityDescriptionTracker2"]</a> @Loc["UserActivityDescriptionTimeTracker"] @(userActivity.DateAdded.ToNaturalLanguage<Home>(false, Loc))</div>
                             </div>
                         </div>
                     }

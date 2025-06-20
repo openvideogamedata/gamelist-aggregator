@@ -26,7 +26,7 @@ public class TrackerStatsViewModel
                         Playing++;
                     else if (trackStatus == TrackStatus.Played)
                         Played++;
-                    else if (trackStatus == TrackStatus.Beated)
+                    else if (trackStatus == TrackStatus.Beaten)
                         Beated++;
                     else if (trackStatus == TrackStatus.Abandoned)
                         Abandoned++;
