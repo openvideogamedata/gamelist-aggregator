@@ -10,7 +10,7 @@
 
 @if (user != null)
 {
-    <PageTitle>@user.FullName's Trackers</PageTitle>
+    <PageTitle>@(user.FullName[user.FullName.Length-1] != 's' ? $"{user.FullName}'s Trackers" : $"{user.FullName}' Trackers")</PageTitle>
     <HeadContent>
         <meta name="description" content="Check how many games this user has tracked!">
     </HeadContent>
