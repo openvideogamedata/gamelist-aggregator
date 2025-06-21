@@ -77,7 +77,21 @@
     </div>
 
     @if (gameUserTracker is not null) {
-        <p><InputDate @onblur="LostFocus" @bind-Value="gameUserTracker.StatusDate" /></p>
+        <p>
+            @if (this.gameUserTracker.HasStatusDate())
+            {
+                <InputDate class="btn btn-primary" style="color:white !important" @onblur="LostFocus" @bind-Value="gameUserTracker.StatusDate" />
+                <button type="button" class="btn btn-primary" @onclick="async () => await RemoveDateFromTracker()">
+                    <span class="oi oi-x" aria-hidden="true"></span>
+                </button>
+            }
+            else
+            {
+                <button type="button" class="btn btn-primary" @onclick="async () => await AddDateForTracker()">
+                    <span class="oi oi-clock" aria-hidden="true"></span>
+                </button>
+            }
+        </p>
         <div>
             <div class="col-sm-6 col-12">
                 <InputTextArea maxlength="80" @bind-Value="@gameUserTracker.Note" @onblur="LostFocus" class="form-control note-text-box" id="exampleFormControlTextarea1" rows="3" disabled="@loading"></InputTextArea>
@@ -210,12 +224,14 @@ else
             this.gameUserTracker = new GameUserTracker();
             this.gameUserTracker.UserId = this.user.Id;
             this.gameUserTracker.GameId = this.game.Id;
-            this.gameUserTracker.StatusDate = DateTime.UtcNow;
+            if (this.gameUserTracker.HasStatusDate())
+                this.gameUserTracker.StatusDate = DateTime.UtcNow;
         }
 
         if (this.gameUserTracker is not null) {
             this.gameUserTracker.Status = trackStatus;
-            this.gameUserTracker.StatusDate = DateTime.UtcNow;
+            if (this.gameUserTracker.HasStatusDate())
+                this.gameUserTracker.StatusDate = DateTime.UtcNow;
         }
 
         await this.CreateOrUpdateTracker();
@@ -261,5 +277,17 @@ else
     {
         if (!_userService.IsLogged())
             NavigationManager.NavigateTo($"/Identity/Login?returnUrl={NavigationManager.ToBaseRelativePath(NavigationManager.Uri)}", true);
+    }
+
+    private async Task RemoveDateFromTracker()
+    {
+        this.gameUserTracker.StatusDate = DateTime.MinValue;
+        await CreateOrUpdateTracker();
+    }
+
+    private async Task AddDateForTracker()
+    {
+        this.gameUserTracker.StatusDate = DateTime.Now;
+        await CreateOrUpdateTracker();
     }
 }

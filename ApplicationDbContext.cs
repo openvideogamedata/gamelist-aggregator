@@ -61,6 +61,8 @@ public class ApplicationDbContext : DbContext {
             .Entity<GameList>()
             .HasOne(p => p.UserContributed)
             .WithMany(p => p.GameListsContributed);
+
+        AppContext.SetSwitch("Npgsql.DisableDateTimeInfinityConversions", true);
             
         base.OnModelCreating(modelBuilder);
     }

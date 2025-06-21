@@ -193,7 +193,7 @@ else
             case TrackStatus.Playing:
                 return (MarkupString)$"<i class=\"oi oi-chevron-right\" aria-hidden=\"true\"></i> {loc["Playing"]} <br> {game.GameUserTracker.GetTrackStatusDate()}";
             case TrackStatus.Beaten:
-                return (MarkupString)$"<i class=\"oi oi-circle-check\" aria-hidden=\"true\"></i> {loc["Beated"]} <br> {game.GameUserTracker.GetTrackStatusDate()}";
+                return (MarkupString)$"<i class=\"oi oi-circle-check\" aria-hidden=\"true\"></i> {loc["Beaten"]} <br> {game.GameUserTracker.GetTrackStatusDate()}";
             case TrackStatus.Abandoned:
                 return (MarkupString)$"<i class=\"oi oi-circle-x\" aria-hidden=\"true\"></i> {loc["Abandoned"]} <br> {game.GameUserTracker.GetTrackStatusDate()}";
             case TrackStatus.Played:

@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 using community.Data;
 
-public class GameUserTracker 
+public class GameUserTracker
 {
     [Key]
     public long Id { get; set; }
@@ -19,11 +19,13 @@ public class GameUserTracker
 
     public string? Note { get; set; }
 
-    public GameUserTracker() {
+    public GameUserTracker()
+    {
 
     }
 
-    public GameUserTracker(long userId, long gameId, TrackStatus status, string note) {
+    public GameUserTracker(long userId, long gameId, TrackStatus status, string note)
+    {
         this.UserId = userId;
         this.GameId = gameId;
         this.Status = status;
@@ -31,8 +33,14 @@ public class GameUserTracker
         this.Note = note;
     }
 
-    public string GetTrackStatusDate() {
-        return $" ({StatusDate.ToString("yyyy-MM-dd")})";
+    public string GetTrackStatusDate()
+    {
+        if (StatusDate == DateTime.MinValue) { return ""; }
+        return $" ({StatusDate:yyyy-MM-dd})";
+    }
+    
+    public bool HasStatusDate() {
+        return StatusDate != DateTime.MinValue;
     }
 }
 

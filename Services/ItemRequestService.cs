@@ -232,7 +232,7 @@ public class GameListRequestService
                                              .OrderByDescending(x => x.Year)
                                              .Select(list => new KeyValuePair<long, int?>(list.Id, list.Year))
                                              .ToList();
-        gameListsYear = gameListsYear.DistinctBy(x => x.Value).ToList();
+        gameListsYear = [.. gameListsYear.DistinctBy(x => x.Value)];
         return gameListsYear;
     }
 
