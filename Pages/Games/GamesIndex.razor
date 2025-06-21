@@ -12,7 +12,7 @@
 <h1>@Loc["GamesTitle"]</h1>
 <p>@Loc["GamesSubtitle"]</p>
 
-<InputText disabled="@searching" class="form-control" @bind-Value="searchedGame" @onblur="SearchGame" @onkeydown="@PressedKey"/>
+<InputText disabled="@searching" class="form-control" @bind-Value="searchedGame" @onblur="SearchGame" @onkeyup="@PressedKey"/>
 <div class="row">
     <div class="col">
         <i class="oi oi-list-rich" aria-hidden="true"></i> 

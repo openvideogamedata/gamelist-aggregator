@@ -6,7 +6,7 @@
 @if (isLogged)
 {
     <h1>@Loc["Users"]</h1>
-    <InputText disabled="@searching" class="form-control" @bind-Value="searchedText" @onblur="Search" @onkeydown="@PressedKey"/>
+    <InputText disabled="@searching" class="form-control" @bind-Value="searchedText" @onblur="Search" @onkeyup="@PressedKey"/>
     <UsersSearch Filters="@Filters"/>
 }
 else

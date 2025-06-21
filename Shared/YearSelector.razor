@@ -23,7 +23,7 @@
 
 @code {
     private int CurrentYear = DateTime.Now.Year;
-    private int? SelectedYear = DateTime.Now.Year;
+    private int? SelectedYear = null;
     private int[] YearList;
 
     [Parameter] public EventCallback<int?> YearChangedCallback { get; set; }

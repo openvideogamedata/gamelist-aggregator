@@ -19,7 +19,7 @@
     else
     {
         <h2 style="margin-top: 0.5em;" id="userTracker">Tracker</h2>
-        <InputText class="form-control" @bind-Value="searchedText" @onblur="Search" @onkeydown="@PressedKey"/>
+        <InputText class="form-control" @bind-Value="searchedText" @onblur="Search" @onkeyup="@PressedKey"/>
         @foreach (var trackFilter in trackersAvailable)
         {
             <div class="track-filter">
@@ -129,11 +129,11 @@
 
             filteredStatus = trackFilter.TrackStatus;
             if (trackerFilters == null)
-                trackerFilters = new GameFilters() { Status = trackFilter.TrackStatus, TrackerYear = DateTime.UtcNow.Year };
+                trackerFilters = new GameFilters() { Status = trackFilter.TrackStatus, TrackerYear = null };
             else
             {
                 trackerFilters.Status = trackFilter.TrackStatus;
-                trackerFilters.TrackerYear = DateTime.UtcNow.Year;
+                trackerFilters.TrackerYear = null;
             }
         }
     }

@@ -60,7 +60,7 @@ else if (gameListRequest != null)
                             (?)<span class="tooltipitext">'name' or 'name, year'</span>
                         </div>
                     </label>
-                    <InputText disabled="@(gamesRequests.Count >= MaxGames)" class="form-control" id="formGameIdInput" @bind-Value="GameTitle" @onkeydown="@PressedKey"/>
+                    <InputText disabled="@(gamesRequests.Count >= MaxGames)" class="form-control" id="formGameIdInput" @bind-Value="GameTitle" @onkeyup="@PressedKey"/>
                     <button disabled="@(searchingGame || gamesRequests.Count >= MaxGames)" class="btn btn-info" @onclick="async () => await Search()">
                         @if(searchingGame)
                         {

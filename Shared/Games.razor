@@ -97,7 +97,7 @@ else
                     (?)<span class="tooltipitext">@Loc["GameSearchTooltip"]</span>
                 </div>
             </label>
-            <InputText disabled="@(false)" style="width:50%;" class="form-control" id="formGameIdInput" @bind-Value="gameTitle" @onkeydown="@PressedKey"/>
+            <InputText disabled="@(false)" style="width:50%;" class="form-control" id="formGameIdInput" @bind-Value="gameTitle" @onkeyup="@PressedKey"/>
             <button disabled="@(searchingGame)" class="btn btn-info" @onclick="async () => await Search()">
                 @if(searchingGame)
                 {
