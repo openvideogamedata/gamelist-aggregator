@@ -74,7 +74,7 @@ public class GameService
                             .AsQueryable();
 
         if (order == GamesOrder.ByStatusDate) {
-            query = query.OrderBy(game => game.GameUserTracker != null ? game.GameUserTracker.StatusDate : DateTime.MinValue).AsQueryable();
+            query = query.OrderByDescending(game => game.GameUserTracker != null ? game.GameUserTracker.StatusDate : DateTime.MinValue).AsQueryable();
         }
 
         if (status is not TrackStatus.None) {

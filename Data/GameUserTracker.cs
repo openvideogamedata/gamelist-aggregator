@@ -19,6 +19,8 @@ public class GameUserTracker
 
     public string? Note { get; set; }
 
+    public bool Platinum { get; set; } = false;
+
     public GameUserTracker()
     {
 

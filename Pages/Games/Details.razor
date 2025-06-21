@@ -72,7 +72,7 @@
         </div>
     </div>
     
-    <div class="row">
+    <div class="row" style="margin-bottom: 35px;">
         <div class="col"></div>
     </div>
 
@@ -81,14 +81,21 @@
             @if (this.gameUserTracker.HasStatusDate())
             {
                 <InputDate class="btn btn-primary" style="color:white !important" @onblur="LostFocus" @bind-Value="gameUserTracker.StatusDate" />
-                <button type="button" class="btn btn-primary" @onclick="async () => await RemoveDateFromTracker()">
+                <button disabled="@loading" type="button" class="btn btn-primary" @onclick="async () => await RemoveDateFromTracker()">
                     <span class="oi oi-x" aria-hidden="true"></span>
                 </button>
             }
             else
             {
-                <button type="button" class="btn btn-primary" @onclick="async () => await AddDateForTracker()">
+                <button disabled="@loading" type="button" class="btn btn-primary" @onclick="async () => await AddDateForTracker()">
                     <span class="oi oi-clock" aria-hidden="true"></span>
+                </button>
+            }
+
+            @if (gameUserTracker is not null &&  gameUserTracker.Status == TrackStatus.Beaten)
+            {
+                <button style="margin-left: 5px;" disabled="@loading" type="button" class="@(gameUserTracker.Platinum ? "btn btn-warning" : "btn btn-primary")" @onclick="async () => await TogglePlatinum()">
+                    <span class="oi oi-badge" aria-hidden="true"></span> 100%
                 </button>
             }
         </p>
@@ -288,6 +295,12 @@ else
     private async Task AddDateForTracker()
     {
         this.gameUserTracker.StatusDate = DateTime.Now;
+        await CreateOrUpdateTracker();
+    }
+
+    private async Task TogglePlatinum()
+    {
+        this.gameUserTracker.Platinum = !this.gameUserTracker.Platinum;
         await CreateOrUpdateTracker();
     }
 }

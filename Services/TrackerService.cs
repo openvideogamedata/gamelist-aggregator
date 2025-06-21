@@ -22,6 +22,7 @@ public class TrackerService
             tracker.Note = gameUserTracker.Note;
             tracker.StatusDate = DateTime.SpecifyKind(gameUserTracker.StatusDate, DateTimeKind.Utc);
             tracker.LastUpdateDate = DateTime.UtcNow;
+            tracker.Platinum = gameUserTracker.Platinum;
             context.GameUserTrackers.Update(tracker);
             gameUserTracker = tracker;
         } else {

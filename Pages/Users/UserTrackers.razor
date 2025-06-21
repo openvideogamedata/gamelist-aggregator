@@ -15,7 +15,7 @@
         <meta name="description" content="Check how many games this user has tracked!">
     </HeadContent>
 
-    <h1>@user.FullName's trackers</h1>
+    <h1>@(user.FullName[user.FullName.Length-1] != 's' ? $"{user.FullName}'s trackers" : $"{user.FullName}' trackers")</h1>
     @if (alreadyFriend)
     {
         <ul style="margin-top: 0.5em;" class="nav nav-tabs mb-2">
