@@ -231,9 +231,13 @@
 
     private async Task MouseMoved(MouseEventArgs e)
     {
-        var absolutePos = await GetOffset(e.ClientX, e.ClientY);
-        if (absolutePos.x != -1 && absolutePos.y != -1)
-            await Draw(absolutePos.x, absolutePos.y);
+        try
+        {
+            var absolutePos = await GetOffset(e.ClientX, e.ClientY);
+            if (absolutePos.x != -1 && absolutePos.y != -1)
+                await Draw(absolutePos.x, absolutePos.y);
+        }
+        catch {}
     }
 
     private async Task TouchMoved(TouchEventArgs e)
