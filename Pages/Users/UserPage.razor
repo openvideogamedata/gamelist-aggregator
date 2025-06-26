@@ -17,7 +17,6 @@ else
     </HeadContent>
 
     <div>
-
         <div class="row">
             <div class="col">
                 <div class="mb-3">
@@ -208,6 +207,12 @@ else
         <br/>
         <Trackers user="@user" trackStatus="2" onlyShowFilteredStatus="@true" />
     </div>
+    @if (isLoggedUser)
+    {
+        <div class="delete-account">
+            <a @onclick="async () => await DeleteAccountPopup()" style="cursor: pointer;">delete account</a>
+        </div>
+    }
 }
 
 <style>
@@ -216,6 +221,11 @@ else
     }
     .card-title, .card-text {
         color: #eeeeee !important;
+    }
+    .delete-account {
+        height: 150px;
+        position: absolute;
+        bottom: 10px;
     }
 </style>
 
@@ -296,5 +306,15 @@ else
     private void GoToRankingPage()
     {
         NavigationManager.NavigateTo($"/top-contributors");
+    }
+
+    private async Task DeleteAccountPopup()
+    {
+        var response = await JS.InvokeAsync<bool>("confirm", "All friends conections, personal lists, badges and trackers will be PERMANENTLY deleted. Are you sure?\n\n If you login again a new account will be created.");
+        if (response)
+        {
+            await _userService.DeleteAccount(user.Id);
+            NavigationManager.NavigateTo("/Identity/Logout?", true);
+        }
     }
 }

@@ -335,6 +335,25 @@ public sealed class UserService
         }
     }
 
+    public async Task DeleteAccount(long id)
+    {
+        if (id == 0) return;
+        
+        using var context = this._factory.CreateDbContext();
+        var user = await context.Users.FirstOrDefaultAsync(u => u.Id == id);
+        var friendships = await context.Friendships.Where(x => x.User1Id == id || x.User2Id == id).ToListAsync();
+
+        if (friendships != null && friendships.Count != 0)
+        {
+            context.Friendships.RemoveRange(friendships);
+        }
+        if (user != null)
+        {
+            context.Users.Remove(user);
+            await context.SaveChangesAsync();
+        }
+    }
+
     private void ReadAllNotifications(long userId)
     {
         using var context = this._factory.CreateDbContext();
