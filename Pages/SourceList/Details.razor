@@ -2,6 +2,9 @@
 @inject ApplicationDbContext applicationDbContext; 
 @using Microsoft.EntityFrameworkCore;
 @using community.Utils
+@using System.Text
+@using Microsoft.JSInterop
+@using System.IO
 @inject NavigationManager NavigationManager
 @inject IJSRuntime JS
 @inject UserService _userService
@@ -53,6 +56,7 @@
             <button class="btn btn-primary" @onclick="GoBack"><span class="oi oi-action-undo" aria-hidden="true"></span> Back</button>
             <input class="form-control not-show" readonly type="text" value="@text" />
             <CopyButton text="@text" />
+            <button class="btn btn-primary" style="margin-left: 0.3em" @onclick="DownloadCsv"><span class="oi oi-data-transfer-download" aria-hidden="true"></span> Download CSV</button>
             @if (YourLists()) {
                 <button class="btn btn-primary" style="margin-left: 0.3em" @onclick="() => GotoEditGameList(sourceList.Id, sourceList.FinalGameList.Slug)"><i class="oi oi-brush" aria-hidden="true"></i> Edit</button>
                 <button class="btn btn-danger" style="margin-left: 0.3em" @onclick="() => DeleteGameList(sourceList.Id)"><i class="oi oi-trash" aria-hidden="true"></i> Delete</button>
@@ -226,5 +230,41 @@
     private string GetGameUrl(long id)
     {
         return $"/game/{id.ToString()}";
+    }
+
+    private async Task DownloadCsv()
+    {
+        try
+        {
+            if (sourceList is null || sourceList.Items is null || sourceList.Items.Count == 0)
+                return;
+
+            var sb = new StringBuilder();
+            sb.Append($"Position,Title,ReleaseDate,ExternalId,Score,GameId,CoverImageId{Environment.NewLine}");
+
+            foreach (var item in sourceList.Items.OrderBy(i => i.Position))
+            {
+                var title = item.GameTitle ?? item.Game?.Title ?? string.Empty;
+                var releaseDate = item.Game?.FirstReleaseDate.ToString("yyyy-MM-dd") ?? string.Empty;
+                var externalId = item.Game?.ExternalId.ToString() ?? string.Empty;
+                var coverImageId = item.Game?.ExternalCoverImageId ?? string.Empty;
+
+                sb.Append($"{item.Position},{title},{releaseDate},{externalId},{item.Score},{item.GameId},{coverImageId}{Environment.NewLine}");
+            }
+
+            var bytes = Encoding.UTF8.GetBytes(sb.ToString());
+            using var stream = new MemoryStream(bytes);
+            using var streamRef = new DotNetStreamReference(stream);
+
+            var sourceName = sourceList.Source?.Name ?? sourceList.UserContributed?.Nickname ?? "list";
+            var timestamp = DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss");
+            var fileName = $"{sourceName} - {timestamp}.csv";
+
+            await JS.InvokeVoidAsync("downloadFileFromStream", fileName, streamRef);
+        }
+        catch(Exception e)
+        {
+            Console.WriteLine($"[ERRO] - DownloadCsv - {e}");
+        }
     }
 }
