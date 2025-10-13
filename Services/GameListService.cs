@@ -13,6 +13,58 @@ public class GameListService
         this._factory = factory;
     }
 
+    public async Task<ResponseToPage> CreateFinalGameListAsync(CreateFinalGameListDto request)
+    {
+        if (request == null)
+            return new ResponseToPage(false, "Dados invalidos.");
+
+        if (string.IsNullOrWhiteSpace(request.Title))
+            return new ResponseToPage(false, "Informe o titulo da lista.");
+
+        if (string.IsNullOrWhiteSpace(request.SocialUrl))
+            return new ResponseToPage(false, "Informe a URL social.");
+
+        if (string.IsNullOrWhiteSpace(request.Tags))
+            return new ResponseToPage(false, "Informe pelo menos uma tag.");
+
+        try
+        {
+            var slugSource = string.IsNullOrWhiteSpace(request.Slug) ? request.Title : request.Slug;
+            var slug = slugSource.ToUrlSlug();
+
+            if (string.IsNullOrWhiteSpace(slug))
+                return new ResponseToPage(false, "Nao foi possivel gerar o slug para essa lista.");
+
+            using var context = this._factory.CreateDbContext();
+            var slugAlreadyExists = await context.FinalGameLists.AnyAsync(x => x.Slug == slug);
+            if (slugAlreadyExists)
+                return new ResponseToPage(false, "Ja existe uma lista com esse slug.");
+
+            var finalGameList = new FinalGameList()
+            {
+                Title = request.Title.Trim(),
+                Year = request.Year,
+                Slug = slug,
+                SocialUrl = request.SocialUrl.Trim(),
+                Tags = request.Tags.Trim(),
+                ConsideredForAvgScore = request.ConsideredForAvgScore,
+                Pinned = request.Pinned,
+                PinnedPriority = request.Pinned ? Math.Max(0, request.PinnedPriority) : 0
+            };
+
+            finalGameList.SetSocialComments(Math.Max(0, request.SocialComments));
+
+            context.FinalGameLists.Add(finalGameList);
+            await context.SaveChangesAsync();
+            return new ResponseToPage(true, "Lista mestra criada com sucesso.");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"[ERRO] - CreateFinalGameListAsync - {ex.Message}", ex);
+            return new ResponseToPage(false, "Nao foi possivel criar a lista mestra.");
+        }
+    }
+
     public List<FinalGameList>  GetAllPinnedLists(long userId)
     {
         using var context = this._factory.CreateDbContext();

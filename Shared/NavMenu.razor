@@ -63,11 +63,19 @@
             }
             <AuthorizeView Roles="admin">
                 <Authorized>
-                    <div class="nav-item px-3">
-                        <NavLink class="nav-link" href="admin/users">
-                            <span class="oi oi-people" aria-hidden="true"></span> Users (admin)
-                        </NavLink>
-                    </div>
+                    @if (userIsAdmin)
+                    {
+                        <div class="nav-item px-3">
+                            <NavLink class="nav-link" href="admin/master-lists/new">
+                                <span class="oi oi-list-rich" aria-hidden="true"></span> Nova lista mestra
+                            </NavLink>
+                        </div>
+                        <div class="nav-item px-3">
+                            <NavLink class="nav-link" href="admin/users">
+                                <span class="oi oi-people" aria-hidden="true"></span> Users (admin)
+                            </NavLink>
+                        </div>
+                    }
                 </Authorized>
             </AuthorizeView>
             <div class="nav-item px-3">
@@ -122,6 +130,7 @@
     private string userPageUrl = "";
     private string? NavMenuCssClass => collapseNavMenu ? "collapse" : null;
     private User? userLogged = null;
+    private bool userIsAdmin = false;
     private string searchedText = "";
 
     protected override void OnInitialized()
@@ -131,6 +140,7 @@
         if (isLogged)
         {
             userLogged = _userService.GetLoggedUserWithNotifications();
+            userIsAdmin = userLogged?.Role == "admin";
             this.userPageUrl = string.IsNullOrEmpty(userLogged?.Nickname) ? "/" : $"/users/{userLogged.Nickname}";
         }
     }

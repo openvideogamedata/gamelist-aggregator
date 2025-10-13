@@ -27,6 +27,11 @@ public class FinalGameList
     [NotMapped]
     public List<SourceList> SimilarLists { get; set; }
 
+    public void SetSocialComments(int totalComments)
+    {
+        SocialComments = totalComments;
+    }
+
     public string GetFullName() {
         if (Year is null) 
             return Title;
