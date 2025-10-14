@@ -140,7 +140,7 @@
         if (isLogged)
         {
             userLogged = _userService.GetLoggedUserWithNotifications();
-            userIsAdmin = _userService.IsAdmin(userLogged);
+            userIsAdmin = userLogged?.Role == "admin";
             this.userPageUrl = string.IsNullOrEmpty(userLogged?.Nickname) ? "/" : $"/users/{userLogged.Nickname}";
         }
     }
