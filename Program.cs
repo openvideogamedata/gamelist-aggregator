@@ -50,6 +50,7 @@ namespace community
             builder.Services.AddSingleton<ItemService>();
             builder.Services.AddSingleton<GameListService>();
             builder.Services.AddSingleton<TrackerService>();
+            builder.Services.AddSingleton<MasterListAdminService>();
 
             builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                 .AddCookie(options =>
@@ -106,6 +107,7 @@ namespace community
             app.UseRouting();
             app.UseCors();
             app.UseMiddleware<UserInfoMiddleware>();
+            app.MapRazorPages();
             app.MapBlazorHub();
             app.MapFallbackToPage("/_Host");
         }

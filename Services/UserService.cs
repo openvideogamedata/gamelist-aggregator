@@ -295,6 +295,11 @@ public sealed class UserService
         return context.Users.Any(u => u.NameIdentifier == nameIdentifier && u.Banned);
     }
 
+    public bool IsAdmin(User? user)
+    {
+        return user?.Role == "admin";
+    }
+
     public async Task GiveBadge(long badgeId, long userId, bool notify = true)
     {
         if (badgeId == 0 || userId == 0) return;
