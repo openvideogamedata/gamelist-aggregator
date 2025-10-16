@@ -58,95 +58,49 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Title" xml:space="preserve">
+    <value>Micro challenge</value>
+  </data>
   <data name="Subtitle" xml:space="preserve">
-    <value>O agregador de listas de jogos</value>
+    <value>Pull three standout games from the community&apos;s pinned lists and make them yours.</value>
   </data>
-  <data name="Loading" xml:space="preserve">
-    <value>Carregando</value>
+  <data name="CardTitle" xml:space="preserve">
+    <value>{0}</value>
   </data>
-  <data name="Banned" xml:space="preserve">
-    <value>Você foi banido e não pode fazer login</value>
+  <data name="CardSubtitle" xml:space="preserve">
+    <value>Fresh picks curated from this list to inspire your next session.</value>
   </data>
-  <data name="TrendingTitle" xml:space="preserve">
-    <value>Listas em alta</value>
+  <data name="LinkLabel" xml:space="preserve">
+    <value>View full list</value>
   </data>
-  <data name="TrendingSubtitle" xml:space="preserve">
-    <value>Descubra as listas que estão em alta no site</value>
+  <data name="Accept" xml:space="preserve">
+    <value>Accept</value>
   </data>
-  <data name="UserActivityTitle" xml:space="preserve">
-    <value>Atividades de Usuários</value>
+  <data name="Skip" xml:space="preserve">
+    <value>Skip</value>
   </data>
-  <data name="UserActivitySubtitle" xml:space="preserve">
-    <value>Descubra o que os usuários estão criando</value>
+  <data name="Complete" xml:space="preserve">
+    <value>Complete</value>
   </data>
-  <data name="UserActivityDescriptionList" xml:space="preserve">
-    <value>criou a lista</value>
+  <data name="GuestHint" xml:space="preserve">
+    <value>Sign in to accept or complete challenges.</value>
   </data>
-  <data name="UserActivityDescriptionTracker" xml:space="preserve">
-    <value>registrou</value>
+  <data name="DismissedMessage" xml:space="preserve">
+    <value>Challenge dismissed. Check back tomorrow for a fresh trio.</value>
   </data>
-  <data name="UserActivityDescriptionTracker1" xml:space="preserve">
-    <value>mais de</value>
+  <data name="FallbackText" xml:space="preserve">
+    <value>No challenge available right now. Explore lists and return later.</value>
   </data>
-  <data name="UserActivityDescriptionTracker2" xml:space="preserve">
-    <value>jogos</value>
+  <data name="SourcesLabel" xml:space="preserve">
+    <value>from {0} sources</value>
   </data>
-  <data name="UserActivityDescriptionTimeTracker" xml:space="preserve">
-    <value>a</value>
+  <data name="PercentageLabel" xml:space="preserve">
+    <value>{0}% consensus</value>
   </data>
-  <data name="CreateYourList" xml:space="preserve">
-    <value>Criar sua lista</value>
+  <data name="AcceptedLabel" xml:space="preserve">
+    <value>Challenge accepted</value>
   </data>
-  <data name="AllGameListsTitle" xml:space="preserve">
-    <value>Todas as listas</value>
-  </data>
-  <data name="AllGameListsSubtitle" xml:space="preserve">
-    <value>Descubra todas as listas filtrando suas preferências</value>
-  </data>
-
-  <data name="until" xml:space="preserve">
-    <value>até</value>
-  </data>
-  <data name="ago" xml:space="preserve">
-    <value>atrás</value>
-  </data>
-  <data name="now" xml:space="preserve">
-    <value>agora</value>
-  </data>
-  <data name="a" xml:space="preserve">
-    <value>um</value>
-  </data>
-  <data name="a_f" xml:space="preserve">
-    <value>uma</value>
-  </data>
-  <data name="an" xml:space="preserve">
-    <value>um</value>
-  </data>
-  <data name="an_f" xml:space="preserve">
-    <value>uma</value>
-  </data>
-  <data name="second" xml:space="preserve">
-    <value>segundo</value>
-  </data>
-  <data name="minute" xml:space="preserve">
-    <value>minuto</value>
-  </data>
-  <data name="hour" xml:space="preserve">
-    <value>hora</value>
-  </data>
-  <data name="day" xml:space="preserve">
-    <value>dia</value>
-  </data>
-  <data name="week" xml:space="preserve">
-    <value>semana</value>
-  </data>
-  <data name="month" xml:space="preserve">
-    <value>mês</value>
-  </data>
-  <data name="months" xml:space="preserve">
-    <value>meses</value>
-  </data>
-  <data name="year" xml:space="preserve">
-    <value>ano</value>
+  <data name="CompletedLabel" xml:space="preserve">
+    <value>Challenge completed</value>
   </data>
 </root>

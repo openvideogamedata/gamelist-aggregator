@@ -1,12 +1,7 @@
 @page "/{Banned?}"
 @using community.Data
 @using community.Dtos
-@using community.Services
-@using System.Threading.Tasks
 @inject GameListService GameListService
-@inject ChallengeService ChallengeService
-@inject ChallengeSessionState ChallengeSessionState
-@inject UserService UserService
 @inject NavigationManager NavigationManager
 @using community.Utils
 @inject IStringLocalizer<Home> Loc
@@ -29,40 +24,6 @@
             if (Banned == "banned")
             {
                 <h1><b>@Loc["Banned"]</b></h1>
-            }
-            @if (microChallenge is not null && !challengeDismissed)
-            {
-                <div class="micro-challenge-container">
-                    <MicroChallengeCard Challenge="@microChallenge"
-                                        Title="@GetChallengeTitle(microChallenge)"
-                                        Subtitle="@Loc["MicroChallengeSubtitle"]"
-                                        LinkText="@Loc["MicroChallengeLinkLabel"]"
-                                        AcceptText="@Loc["MicroChallengeAccept"]"
-                                        SkipText="@Loc["MicroChallengeSkip"]"
-                                        CompleteText="@Loc["MicroChallengeComplete"]"
-                                        SourcesLabel="@Loc["MicroChallengeSourcesLabel"]"
-                                        PercentageLabel="@Loc["MicroChallengePercentageLabel"]"
-                                        AcceptedLabel="@Loc["MicroChallengeAcceptedLabel"]"
-                                        CompletedLabel="@Loc["MicroChallengeCompletedLabel"]"
-                                        AllowInteractions="@allowChallengeInteractions"
-                                        InteractionHint="@(!allowChallengeInteractions ? Loc["MicroChallengeGuestHint"] : string.Empty)"
-                                        IsBusy="@challengeBusy"
-                                        AcceptClicked="EventCallback.Factory.Create(this, OnChallengeAcceptedAsync)"
-                                        SkipClicked="EventCallback.Factory.Create(this, OnChallengeSkipped)"
-                                        CompleteClicked="EventCallback.Factory.Create(this, OnChallengeCompletedAsync)" />
-                </div>
-            }
-            else if (challengeDismissed)
-            {
-                <div class="micro-challenge-container">
-                    <div class="micro-challenge-dismissed">@Loc["MicroChallengeDismissedMessage"]</div>
-                </div>
-            }
-            else if (microChallenge is null && showMicroChallengeFallback)
-            {
-                <div class="micro-challenge-container">
-                    <div class="micro-challenge-dismissed">@Loc["MicroChallengeFallbackText"]</div>
-                </div>
             }
             <h2>@Loc["TrendingTitle"]</h2>
             <p class="open-sub-title">@Loc["TrendingSubtitle"]</p>
@@ -167,52 +128,13 @@
     private bool searching = false;
     private List<string> tagsToFilter = new List<string>();
     private List<string> allTags = new List<string>();
-    private MicroChallengeDto? microChallenge;
-    private bool allowChallengeInteractions;
-    private bool challengeBusy;
-    private bool challengeDismissed;
-    private bool showMicroChallengeFallback;
-    private long loggedUserId;
 
     protected override void OnInitialized()
     {
         base.OnInitialized();
-        var userIsLogged = UserService.IsLogged();
-        if (userIsLogged)
-        {
-            var user = UserService.GetLoggedUser();
-            if (user is not null)
-            {
-                loggedUserId = user.Id;
-            }
-        }
-
-        allowChallengeInteractions = loggedUserId > 0;
-        var contextUserId = allowChallengeInteractions ? loggedUserId : 0;
-
-        this.pinnedLists = GameListService.GetAllPinnedLists(userId: contextUserId);
+        this.pinnedLists = GameListService.GetAllPinnedLists(userId: 0);
         this.userActivityList = GameListService.GetUserActivity();
         this.allTags = FilterListsCategory.GetTagsList();
-
-        microChallenge = ChallengeService.BuildChallengeFromLists(this.pinnedLists, contextUserId);
-        if (microChallenge is not null)
-        {
-            var storedChallenge = ChallengeSessionState.Get(microChallenge.ChallengeId);
-            if (storedChallenge is not null)
-            {
-                microChallenge = storedChallenge;
-            }
-            else
-            {
-                ChallengeSessionState.Store(microChallenge);
-            }
-
-            showMicroChallengeFallback = false;
-        }
-        else
-        {
-            showMicroChallengeFallback = true;
-        }
     }
 
     private string GetUserPerfilUrl(User? user)
@@ -228,85 +150,9 @@
         return $"/view-list/{gameListId}";
     }
 
-    private string GetChallengeTitle(MicroChallengeDto challenge)
-    {
-        if (challenge is null)
-            return string.Empty;
-
-        var listName = challenge.SourceYear.HasValue && challenge.SourceYear.Value > 0
-            ? $"{challenge.SourceTitle} {challenge.SourceYear}"
-            : challenge.SourceTitle;
-
-        return string.Format(Loc["MicroChallengeTitle"].Value, listName);
-    }
-
     private void ViewList(string slug)
     {
         NavigationManager.NavigateTo($"/list/{slug}");
-    }
-
-    private async Task OnChallengeAcceptedAsync()
-    {
-        if (!allowChallengeInteractions || microChallenge is null || challengeBusy)
-            return;
-
-        challengeBusy = true;
-        try
-        {
-            await ChallengeService.ApplyTrackerStatusAsync(microChallenge, loggedUserId, TrackStatus.ToPlay);
-            foreach (var game in microChallenge.SuggestedGames)
-            {
-                if (game.TrackStatus == TrackStatus.None)
-                {
-                    game.TrackStatus = TrackStatus.ToPlay;
-                }
-            }
-
-            microChallenge = microChallenge.Accept();
-            ChallengeSessionState.Store(microChallenge);
-        }
-        finally
-        {
-            challengeBusy = false;
-        }
-    }
-
-    private async Task OnChallengeCompletedAsync()
-    {
-        if (!allowChallengeInteractions || microChallenge is null || challengeBusy)
-            return;
-
-        challengeBusy = true;
-        try
-        {
-            await ChallengeService.ApplyTrackerStatusAsync(microChallenge, loggedUserId, TrackStatus.Played);
-            foreach (var game in microChallenge.SuggestedGames)
-            {
-                if (game.TrackStatus != TrackStatus.Beaten)
-                {
-                    game.TrackStatus = TrackStatus.Played;
-                }
-            }
-
-            microChallenge = microChallenge.Complete();
-            ChallengeSessionState.Store(microChallenge);
-        }
-        finally
-        {
-            challengeBusy = false;
-        }
-    }
-
-    private void OnChallengeSkipped()
-    {
-        if (microChallenge is not null)
-        {
-            ChallengeSessionState.Clear(microChallenge.ChallengeId);
-        }
-
-        microChallenge = null;
-        challengeDismissed = true;
-        showMicroChallengeFallback = false;
     }
 
     private void FilterBy(string tag = Tags.All) {

@@ -67,6 +67,9 @@
   <data name="GamesDatabase" xml:space="preserve">
     <value>Base de Jogos</value>
   </data>
+  <data name="MicroChallenge" xml:space="preserve">
+    <value>Desafio relâmpago</value>
+  </data>
   <data name="MyLists" xml:space="preserve">
     <value>Minhas Listas</value>
   </data>

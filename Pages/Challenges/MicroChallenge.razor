@@ -1,0 +1,165 @@
+@page "/challenges/micro"
+@using community.Data
+@using community.Dtos
+@using community.Services
+@using System.Threading.Tasks
+@inject ChallengeService ChallengeService
+@inject ChallengeSessionState ChallengeSessionState
+@inject GameListService GameListService
+@inject UserService UserService
+@inject IStringLocalizer<MicroChallenge> Loc
+
+<div class="micro-challenge-page">
+    <h1 class="open-title"><b>@Loc["Title"]</b></h1>
+    <p class="open-sub-title">@Loc["Subtitle"]</p>
+
+    @if (microChallenge is not null && !challengeDismissed)
+    {
+        <MicroChallengeCard Challenge="@microChallenge"
+                            Title="@GetChallengeTitle(microChallenge)"
+                            Subtitle="@Loc["CardSubtitle"]"
+                            LinkText="@Loc["LinkLabel"]"
+                            AcceptText="@Loc["Accept"]"
+                            SkipText="@Loc["Skip"]"
+                            CompleteText="@Loc["Complete"]"
+                            SourcesLabel="@Loc["SourcesLabel"]"
+                            PercentageLabel="@Loc["PercentageLabel"]"
+                            AcceptedLabel="@Loc["AcceptedLabel"]"
+                            CompletedLabel="@Loc["CompletedLabel"]"
+                            AllowInteractions="@allowChallengeInteractions"
+                            InteractionHint="@(!allowChallengeInteractions ? Loc["GuestHint"] : string.Empty)"
+                            IsBusy="@challengeBusy"
+                            AcceptClicked="EventCallback.Factory.Create(this, OnChallengeAcceptedAsync)"
+                            SkipClicked="EventCallback.Factory.Create(this, OnChallengeSkipped)"
+                            CompleteClicked="EventCallback.Factory.Create(this, OnChallengeCompletedAsync)" />
+    }
+    else if (challengeDismissed)
+    {
+        <div class="micro-challenge-dismissed">@Loc["DismissedMessage"]</div>
+    }
+    else if (microChallenge is null)
+    {
+        <div class="micro-challenge-dismissed">@Loc["FallbackText"]</div>
+    }
+</div>
+
+@code {
+    private MicroChallengeDto? microChallenge;
+    private bool allowChallengeInteractions;
+    private bool challengeBusy;
+    private bool challengeDismissed;
+    private long loggedUserId;
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        LoadChallenge();
+    }
+
+    private void LoadChallenge()
+    {
+        loggedUserId = 0;
+        if (UserService.IsLogged())
+        {
+            var user = UserService.GetLoggedUser();
+            if (user is not null)
+            {
+                loggedUserId = user.Id;
+            }
+        }
+
+        allowChallengeInteractions = loggedUserId > 0;
+        var contextUserId = allowChallengeInteractions ? loggedUserId : 0;
+
+        var pinnedLists = GameListService.GetAllPinnedLists(contextUserId);
+        microChallenge = ChallengeService.BuildChallengeFromLists(pinnedLists, contextUserId);
+
+        if (microChallenge is not null)
+        {
+            var storedChallenge = ChallengeSessionState.Get(microChallenge.ChallengeId);
+            if (storedChallenge is not null)
+            {
+                microChallenge = storedChallenge;
+            }
+            else
+            {
+                ChallengeSessionState.Store(microChallenge);
+            }
+        }
+    }
+
+    private string GetChallengeTitle(MicroChallengeDto challenge)
+    {
+        if (challenge is null)
+            return string.Empty;
+
+        var listName = challenge.SourceYear.HasValue && challenge.SourceYear.Value > 0
+            ? $"{challenge.SourceTitle} {challenge.SourceYear}"
+            : challenge.SourceTitle;
+
+        return string.Format(Loc["CardTitle"].Value, listName);
+    }
+
+    private async Task OnChallengeAcceptedAsync()
+    {
+        if (!allowChallengeInteractions || microChallenge is null || challengeBusy)
+            return;
+
+        challengeBusy = true;
+        try
+        {
+            await ChallengeService.ApplyTrackerStatusAsync(microChallenge, loggedUserId, TrackStatus.ToPlay);
+            foreach (var game in microChallenge.SuggestedGames)
+            {
+                if (game.TrackStatus == TrackStatus.None)
+                {
+                    game.TrackStatus = TrackStatus.ToPlay;
+                }
+            }
+
+            microChallenge = microChallenge.Accept();
+            ChallengeSessionState.Store(microChallenge);
+        }
+        finally
+        {
+            challengeBusy = false;
+        }
+    }
+
+    private async Task OnChallengeCompletedAsync()
+    {
+        if (!allowChallengeInteractions || microChallenge is null || challengeBusy)
+            return;
+
+        challengeBusy = true;
+        try
+        {
+            await ChallengeService.ApplyTrackerStatusAsync(microChallenge, loggedUserId, TrackStatus.Played);
+            foreach (var game in microChallenge.SuggestedGames)
+            {
+                if (game.TrackStatus != TrackStatus.Beaten)
+                {
+                    game.TrackStatus = TrackStatus.Played;
+                }
+            }
+
+            microChallenge = microChallenge.Complete();
+            ChallengeSessionState.Store(microChallenge);
+        }
+        finally
+        {
+            challengeBusy = false;
+        }
+    }
+
+    private void OnChallengeSkipped()
+    {
+        if (microChallenge is not null)
+        {
+            ChallengeSessionState.Clear(microChallenge.ChallengeId);
+        }
+
+        microChallenge = null;
+        challengeDismissed = true;
+    }
+}

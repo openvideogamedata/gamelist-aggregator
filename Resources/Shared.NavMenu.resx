@@ -67,6 +67,9 @@
   <data name="GamesDatabase" xml:space="preserve">
     <value>Games Database</value>
   </data>
+  <data name="MicroChallenge" xml:space="preserve">
+    <value>Micro Challenge</value>
+  </data>
   <data name="MyLists" xml:space="preserve">
     <value>My Lists</value>
   </data>
