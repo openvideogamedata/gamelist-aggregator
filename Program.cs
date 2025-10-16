@@ -50,6 +50,8 @@ namespace community
             builder.Services.AddSingleton<ItemService>();
             builder.Services.AddSingleton<GameListService>();
             builder.Services.AddSingleton<TrackerService>();
+            builder.Services.AddScoped<ChallengeService>();
+            builder.Services.AddScoped<ChallengeSessionState>();
 
             builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                 .AddCookie(options =>

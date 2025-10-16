@@ -149,4 +149,43 @@
   <data name="year" xml:space="preserve">
     <value>year</value>
   </data>
+  <data name="MicroChallengeTitle" xml:space="preserve">
+    <value>Micro challenge · {0}</value>
+  </data>
+  <data name="MicroChallengeSubtitle" xml:space="preserve">
+    <value>Three games pulled from this list to inspire your next session</value>
+  </data>
+  <data name="MicroChallengeLinkLabel" xml:space="preserve">
+    <value>View full list</value>
+  </data>
+  <data name="MicroChallengeAccept" xml:space="preserve">
+    <value>Accept</value>
+  </data>
+  <data name="MicroChallengeSkip" xml:space="preserve">
+    <value>Skip</value>
+  </data>
+  <data name="MicroChallengeComplete" xml:space="preserve">
+    <value>Complete</value>
+  </data>
+  <data name="MicroChallengeGuestHint" xml:space="preserve">
+    <value>Sign in to accept or complete challenges.</value>
+  </data>
+  <data name="MicroChallengeDismissedMessage" xml:space="preserve">
+    <value>Challenge dismissed. Check back tomorrow for a fresh trio.</value>
+  </data>
+  <data name="MicroChallengeFallbackText" xml:space="preserve">
+    <value>No challenge available right now. Explore the trending lists below.</value>
+  </data>
+  <data name="MicroChallengeSourcesLabel" xml:space="preserve">
+    <value>from {0} sources</value>
+  </data>
+  <data name="MicroChallengePercentageLabel" xml:space="preserve">
+    <value>{0}% consensus</value>
+  </data>
+  <data name="MicroChallengeAcceptedLabel" xml:space="preserve">
+    <value>Challenge accepted</value>
+  </data>
+  <data name="MicroChallengeCompletedLabel" xml:space="preserve">
+    <value>Challenge completed</value>
+  </data>
 </root>

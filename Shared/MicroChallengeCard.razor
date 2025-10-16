@@ -1,0 +1,101 @@
+@using community.Dtos
+@if (Challenge is not null)
+{
+    <div class="micro-challenge-card">
+        <div class="micro-challenge-header">
+            <div class="micro-challenge-title">@Title</div>
+            @if (!string.IsNullOrWhiteSpace(LinkText) && !string.IsNullOrWhiteSpace(Challenge.SourceSlug))
+            {
+                <a class="micro-challenge-link" href="@GetListUrl(Challenge.SourceSlug)">@LinkText</a>
+            }
+        </div>
+        @if (!string.IsNullOrWhiteSpace(Subtitle))
+        {
+            <div class="micro-challenge-subtitle">@Subtitle</div>
+        }
+        @if (Challenge.IsCompleted && !string.IsNullOrWhiteSpace(CompletedLabel))
+        {
+            <div class="micro-challenge-status micro-challenge-status-completed">
+                <span class="oi oi-check mr-1" aria-hidden="true"></span> @CompletedLabel
+            </div>
+        }
+        else if (Challenge.IsAccepted && !string.IsNullOrWhiteSpace(AcceptedLabel))
+        {
+            <div class="micro-challenge-status">
+                <span class="oi oi-flag mr-1" aria-hidden="true"></span> @AcceptedLabel
+            </div>
+        }
+        @if (Challenge.SourceTags?.Count > 0)
+        {
+            <div class="micro-challenge-tags">
+                @foreach (var tag in Challenge.SourceTags)
+                {
+                    <span class="badge bg-dark micro-challenge-tag">#@tag</span>
+                }
+            </div>
+        }
+        <div class="micro-challenge-games">
+            @foreach (var game in Challenge.SuggestedGames)
+            {
+                <div class="micro-challenge-game">
+                    <GameCover src="@game.CoverImageUrl" alt="@game.GameTitle" height="96" width="72" style="border-radius: 6px;" />
+                    <div class="micro-challenge-game-info">
+                        <div class="micro-challenge-game-title">@game.GameTitle</div>
+                        @if (ShowMeta)
+                        {
+                            <div class="micro-challenge-game-meta">
+                                @if (game.FirstReleaseDate != DateTime.MinValue)
+                                {
+                                    <span>@game.FirstReleaseDate.Year</span>
+                                }
+                                @if (game.PorcentageOfCitations > 0 && !string.IsNullOrWhiteSpace(PercentageLabel))
+                                {
+                                    <span> · @string.Format(PercentageLabel, game.PorcentageOfCitations)</span>
+                                }
+                                @if (game.Citations > 0 && !string.IsNullOrWhiteSpace(SourcesLabel))
+                                {
+                                    <span> · @string.Format(SourcesLabel, game.Citations)</span>
+                                }
+                            </div>
+                        }
+                    </div>
+                </div>
+            }
+        </div>
+        @if (AllowInteractions)
+        {
+            <div class="micro-challenge-actions">
+                <button class="btn btn-primary" disabled="@(IsBusy || (Challenge?.IsAccepted ?? false))" @onclick="AcceptClicked">@AcceptText</button>
+                <button class="btn btn-outline-secondary" disabled="@IsBusy" @onclick="SkipClicked">@SkipText</button>
+                <button class="btn btn-success" disabled="@(IsBusy || !(Challenge?.IsAccepted ?? false) || (Challenge?.IsCompleted ?? false))" @onclick="CompleteClicked">@CompleteText</button>
+            </div>
+        }
+        else if (!string.IsNullOrWhiteSpace(InteractionHint))
+        {
+            <div class="micro-challenge-hint">@InteractionHint</div>
+        }
+    </div>
+}
+
+@code {
+    [Parameter] public MicroChallengeDto? Challenge { get; set; }
+    [Parameter] public string Title { get; set; }
+    [Parameter] public string Subtitle { get; set; }
+    [Parameter] public string LinkText { get; set; }
+    [Parameter] public string AcceptText { get; set; }
+    [Parameter] public string SkipText { get; set; }
+    [Parameter] public string CompleteText { get; set; }
+    [Parameter] public string InteractionHint { get; set; }
+    [Parameter] public string SourcesLabel { get; set; }
+    [Parameter] public string PercentageLabel { get; set; }
+    [Parameter] public string AcceptedLabel { get; set; }
+    [Parameter] public string CompletedLabel { get; set; }
+    [Parameter] public bool ShowMeta { get; set; } = true;
+    [Parameter] public bool AllowInteractions { get; set; } = true;
+    [Parameter] public bool IsBusy { get; set; }
+    [Parameter] public EventCallback AcceptClicked { get; set; }
+    [Parameter] public EventCallback SkipClicked { get; set; }
+    [Parameter] public EventCallback CompleteClicked { get; set; }
+
+    private string GetListUrl(string slug) => $"/list/{slug}";
+}
