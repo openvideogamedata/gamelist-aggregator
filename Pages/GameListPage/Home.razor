@@ -1,6 +1,5 @@
 @page "/{Banned?}"
 @using community.Data
-@using community.Dtos
 @inject GameListService GameListService
 @inject NavigationManager NavigationManager
 @using community.Utils
@@ -122,8 +121,6 @@
     private List<FinalGameList>? pinnedLists = new List<FinalGameList>();
     private List<UserActivityData> userActivityList = new List<UserActivityData>();
     public FilterListsCategory Filters { get; set; } = null;
-    private int totalNumberOfGameLists = 0;
-    private int totalNUmberOfUsers = 0;
     private string searchedList = "";
     private bool searching = false;
     private List<string> tagsToFilter = new List<string>();
@@ -135,24 +132,6 @@
         this.pinnedLists = GameListService.GetAllPinnedLists(userId: 0);
         this.userActivityList = GameListService.GetUserActivity();
         this.allTags = FilterListsCategory.GetTagsList();
-    }
-
-    private string GetUserPerfilUrl(User? user)
-    {
-        if (user is not null) {
-            return $"/users/{user.Nickname}";
-        }
-
-        return "";
-    }
-
-    private string GetGameListUrl(long gameListId) {
-        return $"/view-list/{gameListId}";
-    }
-
-    private void ViewList(string slug)
-    {
-        NavigationManager.NavigateTo($"/list/{slug}");
     }
 
     private void FilterBy(string tag = Tags.All) {
