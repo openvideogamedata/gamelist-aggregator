@@ -103,13 +103,7 @@ namespace community
             });
 
             app.UseStaticFiles();
-            app.UseCookiePolicy();
-            app.UseAuthentication();
-            app.UseAuthorization();
             app.UseRouting();
-            app.UseCors();
-            app.UseMiddleware<UserInfoMiddleware>();
-
             app.UseSwagger();
             app.UseSwaggerUI(options =>
             {
@@ -117,7 +111,14 @@ namespace community
                 options.RoutePrefix = "swagger";
             });
 
+            app.UseCookiePolicy();
+            app.UseAuthentication();
+            app.UseAuthorization();
+            app.UseCors();
+            app.UseMiddleware<UserInfoMiddleware>();
+
             app.MapGet("/api/hello", () => Results.Ok("hello world"));
+            app.MapGet("/swagger", () => Results.Redirect("/swagger/index.html", permanent: false));
             app.MapBlazorHub();
             app.MapFallbackToPage("/_Host");
         }
