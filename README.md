@@ -78,6 +78,23 @@ dotnet ef database update
     If the list is new, continue to add games (max 15 per list).
 4. Vote & Approval: Submissions are visible to users for upvotes/downvotes; admins review them before final acceptance.
 
+## 🔐 Google Login via API (step by step)
+These endpoints allow a front-end (or a human) to complete Google login using the API routes.
+
+1. Open the login URL in your browser:
+   - `https://www.openvideogamedata.com/api/auth/login?returnUrl=/`
+2. You will be sent to Google. Log in and approve access.
+3. Google redirects back to `/api/auth/callback` automatically.
+4. After the callback, you are redirected to the `returnUrl` you sent in step 1.
+5. Confirm the session is active:
+   - `https://www.openvideogamedata.com/api/auth/session`
+6. To log out:
+   - `https://www.openvideogamedata.com/api/auth/logout?returnUrl=/`
+
+Notes:
+- `returnUrl` must be a path inside the site (examples: `/`, `/list/best-games-of-all-time`, `/users/dan`).
+- If you do not pass `returnUrl`, the app redirects to the home page.
+
 ## 📋 Rules for Submitting Critic Lists
 - Must represent a journalist’s/critic’s opinion (not personal).
 - Must be enumerated and ranked.
