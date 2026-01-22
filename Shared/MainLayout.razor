@@ -1,4 +1,5 @@
 ﻿@inherits LayoutComponentBase
+@inject IConfiguration Configuration
 
 <PageTitle>Open Video Game Data</PageTitle>
 
@@ -17,6 +18,7 @@
                 <div class="col open-footer">
                     <p>© OpenVideoGameData 2025 - Powered by <a href="https://www.igdb.com/">IGDB</a></p>
                     <p>Read more about <a href="about">here</a></p>
+                    <p>Version: @AppVersion</p>
                 </div>
             </div>
         </footer>
@@ -170,3 +172,10 @@
         }
     </style>
 </div>
+
+@code {
+    private string AppVersion =>
+        Configuration["APP_VERSION"]
+        ?? typeof(Program).Assembly.GetName().Version?.ToString()
+        ?? "unknown";
+}
