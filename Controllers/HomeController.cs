@@ -23,17 +23,18 @@ public class HomeController : ControllerBase
         [FromQuery] string? search = null)
     {
         var filters = BuildFilters(page, pageSize, maxPages, tags, search);
-        var pinnedLists = _gameListService.GetAllPinnedLists(userId: 0);
-        var userActivity = _gameListService.GetUserActivity();
+        var pinnedLists = MapFinalGameLists(_gameListService.GetAllPinnedLists(userId: 0));
+        var userActivity = MapUserActivity(_gameListService.GetUserActivity());
         var allTags = FilterListsCategory.GetTagsList();
         var (listsCategories, pager) = _gameListService.GetAllListsCategories(filters, userId: 0);
+        var mappedListsCategories = MapFinalGameLists(listsCategories);
 
         return Ok(new
         {
             pinnedLists,
             userActivity,
             allTags,
-            listsCategories,
+            listsCategories = mappedListsCategories,
             pager,
             filters
         });
@@ -42,13 +43,13 @@ public class HomeController : ControllerBase
     [HttpGet("pinned-lists")]
     public IActionResult GetPinnedLists()
     {
-        return Ok(_gameListService.GetAllPinnedLists(userId: 0));
+        return Ok(MapFinalGameLists(_gameListService.GetAllPinnedLists(userId: 0)));
     }
 
     [HttpGet("user-activity")]
     public IActionResult GetUserActivity()
     {
-        return Ok(_gameListService.GetUserActivity());
+        return Ok(MapUserActivity(_gameListService.GetUserActivity()));
     }
 
     [HttpGet("tags")]
@@ -67,10 +68,11 @@ public class HomeController : ControllerBase
     {
         var filters = BuildFilters(page, pageSize, maxPages, tags, search);
         var (lists, pager) = _gameListService.GetAllListsCategories(filters, userId: 0);
+        var mappedLists = MapFinalGameLists(lists);
 
         return Ok(new
         {
-            lists,
+            lists = mappedLists,
             pager,
             filters
         });
@@ -107,4 +109,67 @@ public class HomeController : ControllerBase
 
         return parsed.Count == 0 ? new List<string> { Tags.All } : parsed;
     }
+
+    private static List<HomeFinalGameListDto> MapFinalGameLists(IEnumerable<FinalGameList> lists)
+    {
+        return lists.Select(list => new HomeFinalGameListDto(
+            list.Id,
+            list.Title,
+            list.Year,
+            list.NumberOfGames,
+            list.NumberOfSources,
+            list.Slug,
+            list.TopThreeWinners.Select(winner => new HomeWinnerDto(
+                winner.GameId,
+                winner.GameTitle,
+                winner.CoverImageUrl)).ToList())).ToList();
+    }
+
+    private static List<HomeUserActivityDto> MapUserActivity(IEnumerable<UserActivityData> activity)
+    {
+        return activity.Select(item => new HomeUserActivityDto(
+            item.Activity,
+            item.DateAdded,
+            item.ItemsTracked,
+            item.UserProfileUrl,
+            item.GameListUrl,
+            item.User is null
+                ? null
+                : new HomeUserDto(item.User.FullName, item.User.GetUserPicture()),
+            item.MostRecentTracker is null
+                ? null
+                : new HomeTrackerDto(item.MostRecentTracker.Status),
+            item.GameList?.FinalGameList?.GetFullName())).ToList();
+    }
+
+    private sealed record HomeFinalGameListDto(
+        long Id,
+        string Title,
+        int? Year,
+        int NumberOfGames,
+        int NumberOfSources,
+        string Slug,
+        List<HomeWinnerDto> TopThreeWinners);
+
+    private sealed record HomeWinnerDto(
+        long GameId,
+        string GameTitle,
+        string CoverImageUrl);
+
+    private sealed record HomeUserActivityDto(
+        ActivityType Activity,
+        DateTime DateAdded,
+        int ItemsTracked,
+        string UserProfileUrl,
+        string GameListUrl,
+        HomeUserDto? User,
+        HomeTrackerDto? MostRecentTracker,
+        string? GameListName);
+
+    private sealed record HomeUserDto(
+        string FullName,
+        string[]? UserPicture);
+
+    private sealed record HomeTrackerDto(
+        TrackStatus Status);
 }
