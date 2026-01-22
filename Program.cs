@@ -44,6 +44,7 @@ namespace community
 
             builder.Services.AddRazorPages();
             builder.Services.AddServerSideBlazor();
+            builder.Services.AddControllers();
             builder.Services.AddSingleton<GameService>();
             builder.Services.AddSingleton<UserService>();
             builder.Services.AddSingleton<GameListRequestService>();
@@ -117,6 +118,7 @@ namespace community
             app.UseCors();
             app.UseMiddleware<UserInfoMiddleware>();
 
+            app.MapControllers();
             app.MapGet("/api/hello", () => Results.Ok("hello world"));
             app.MapGet("/swagger", () => Results.Redirect("/swagger/index.html", permanent: false));
             app.MapBlazorHub();
