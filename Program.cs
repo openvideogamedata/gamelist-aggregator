@@ -75,6 +75,9 @@ namespace community
             {
                 options.ResourcesPath = "Resources";
             });
+
+            builder.Services.AddEndpointsApiExplorer();
+            builder.Services.AddSwaggerGen();
         }
 
         private static void Configure(WebApplication app)
@@ -106,6 +109,15 @@ namespace community
             app.UseRouting();
             app.UseCors();
             app.UseMiddleware<UserInfoMiddleware>();
+
+            app.UseSwagger();
+            app.UseSwaggerUI(options =>
+            {
+                options.SwaggerEndpoint("/swagger/v1/swagger.json", "API v1");
+                options.RoutePrefix = "swagger";
+            });
+
+            app.MapGet("/api/hello", () => Results.Ok("hello world"));
             app.MapBlazorHub();
             app.MapFallbackToPage("/_Host");
         }
