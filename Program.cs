@@ -78,7 +78,10 @@ namespace community
             });
 
             builder.Services.AddEndpointsApiExplorer();
-            builder.Services.AddSwaggerGen();
+            builder.Services.AddSwaggerGen(options =>
+            {
+                options.EnableAnnotations();
+            });
         }
 
         private static void Configure(WebApplication app)

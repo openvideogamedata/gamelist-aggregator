@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Swashbuckle.AspNetCore.Annotations;
 
 namespace community.Controllers;
 
@@ -20,6 +21,10 @@ public class AuthController : ControllerBase
 
     [AllowAnonymous]
     [HttpGet("login")]
+    [SwaggerOperation(
+        Summary = "Google login (abrir no navegador)",
+        Description = "Este endpoint redireciona para o Google e nao funciona pelo Swagger UI (CORS/redirect). Abra no navegador."
+    )]
     public IActionResult Login([FromQuery] string? returnUrl = null)
     {
         var authenticationProperties = new AuthenticationProperties
